@@ -1,4 +1,12 @@
-h1
-  | Books#new
-p
-  | Find me in app/views/books/new.html.erb
+- if !@book.errors.empty?
+  .alert.alert-error
+    ul
+      - @book.errors.full_messages.each do |msg|
+        li= msg
+.well
+  = form_for @book, html: { multipart: true } do |f|
+    = f.label :title
+    = f.text_field :title
+    = f.label :attachment
+    = f.file_field :attachment
+    = f.submit "Save", class: "btn btn-primary"
