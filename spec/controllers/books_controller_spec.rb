@@ -4,7 +4,6 @@ RSpec.describe BooksController, type: :controller do
 
   describe "GET #index" do
     it "returns http success" do
-      pending
       get :index
       expect(response).to have_http_status(:success)
     end
@@ -12,7 +11,6 @@ RSpec.describe BooksController, type: :controller do
 
   describe "GET #new" do
     it "returns http success" do
-      pending
       get :new
       expect(response).to have_http_status(:success)
     end
