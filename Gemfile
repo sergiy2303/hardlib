@@ -16,6 +16,7 @@ gem 'slim'
 gem 'carrierwave'
 gem 'fog'
 gem 'net-ssh'
+gem 'cloudinary'
 
 group :development, :test do
   gem 'pry'

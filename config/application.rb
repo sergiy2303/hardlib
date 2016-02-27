@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 
 module Hardlib
   class Application < Rails::Application
+    Rails.configuration.cloudinary = YAML.load(ERB.new(File.read('config/cloudinary.yml')).result)[Rails.env]
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
