@@ -17,6 +17,7 @@ gem 'carrierwave'
 gem 'fog'
 gem 'net-ssh'
 gem 'cloudinary'
+gem "jquery-turbolinks"
 
 group :development, :test do
   gem 'pry'
