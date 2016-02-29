@@ -1,7 +1,7 @@
 = form_for new_user, as: :user, url: session_path(:user), html: { class: 'form-signin' }, remote: true do |f|
   h2.form-signin-heading Please login
-  = f.email_field :email, autofocus: true, class: 'form-control'
-  = f.password_field :password, autocomplete: "off", class: 'form-control'
+  = f.email_field :email, autofocus: true, class: 'form-control', required: true
+  = f.password_field :password, autocomplete: "off", class: 'form-control', required: true
   - flash.each do |key, message|
      .alert class="alert-#{key}"
         a.close data-dismiss="alert" aria-label="close"

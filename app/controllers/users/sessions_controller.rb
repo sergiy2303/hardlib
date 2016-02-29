@@ -17,7 +17,7 @@ class Users::SessionsController < Devise::SessionsController
       sign_in(resource_name, resource)
       redirect_via_turbolinks_to root_path
     else
-      flash[:danger] = 'Incorrect email or password'
+      flash.now[:danger] = 'Incorrect email or password'
     end
   end
 
