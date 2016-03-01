@@ -18,6 +18,7 @@ gem 'fog'
 gem 'net-ssh'
 gem 'cloudinary'
 gem "jquery-turbolinks"
+gem 'simple_form'
 
 group :development, :test do
   gem 'pry'

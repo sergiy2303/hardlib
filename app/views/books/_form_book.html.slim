@@ -1,0 +1,9 @@
+= simple_form_for @book do |f|
+  = f.input :title, label: 'Title', input_html: { class: 'form-control' }
+  = f.input :description, label: 'Description', input_html: { class: 'form-control' }
+  = f.input :author, label: 'Author', input_html: { class: 'form-control' }
+  = f.input :pages, label: 'Pages', input_html: { class: 'form-control' }
+  = f.input :year, label: 'Year', input_html: { class: 'form-control' }
+  = f.input :attachment, input_html: { class: 'file' }
+  = f.input :thumbnail, input_html: { class: 'file' }
+  = f.button :submit, class: "btn btn-primary"
