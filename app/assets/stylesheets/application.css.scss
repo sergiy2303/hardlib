@@ -16,9 +16,14 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
-.modal-dialog {
+#sign-in-modal .modal-dialog {
   max-width: 450px;
 }
+
+#book-modal .modal-dialog {
+  min-width: 650px;
+}
+
 .form-signin {
   max-width: 380px;
   padding: 0px 35px 30px;

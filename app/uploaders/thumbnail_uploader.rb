@@ -18,6 +18,6 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    "default_book/" + [version_name, "default.jpg"].compact.join('_')
+    "default_book/" + "default.jpg"
   end
 end

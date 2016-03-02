@@ -1,0 +1,9 @@
+= simple_form_for @book, remote: true do |f|
+  = f.input :title, label: 'Title'
+  = f.input :attachment, input_html: { class: 'file', accept: '.pdf, .doc, .htm, .html, .docx' }
+  = f.input :thumbnail, input_html: { class: 'file', accept: '.png, .jpg, .gif' }
+  = f.input :description, label: 'Description', as: :text
+  = f.input :author, label: 'Author'
+  = f.input :pages, label: 'Pages'
+  = f.input :year, label: 'Year'
+  = f.button :submit, class: "btn btn-primary"
