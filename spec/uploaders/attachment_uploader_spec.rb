@@ -1,6 +1,6 @@
 require 'rails_helper'
 require 'carrierwave/test/matchers'
-PATH_TO_FILE = 'public/test/default.pdf'
+PATH_TO_FILE = 'spec/fixtures/books/default.pdf'
 describe AttachmentUploader do
   include CarrierWave::Test::Matchers
   before do
@@ -20,6 +20,6 @@ describe AttachmentUploader do
 
   it "should be the correct format and correct path" do
     expect(@uploader.filename).to eq('default.pdf')
-    expect(@uploader.store_dir).to eq("uploads/book/attachment/#{@book.id}")
+    expect(@uploader.store_dir).to include("uploads/book/attachment/#{@book.id}")
   end
 end

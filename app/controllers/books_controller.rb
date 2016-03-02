@@ -1,23 +1,24 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
   skip_before_action :verify_authenticity_token, only: [:create]
+  before_action :book, only: [:new, :destroy]
+  before_action :books, only: [:index]
+
   def index
-    @books = Book.all
   end
 
   def new
-    @book = Book.new
   end
 
   def create
     @book = Book.new(book_params)
+    @book.user_id = current_user.id
     if @book.save
       redirect_via_turbolinks_to books_path
     end
   end
 
   def destroy
-    @book = Book.find(params[:id])
     @book.destroy
     redirect_via_turbolinks_to books_path
   end
@@ -34,5 +35,13 @@ class BooksController < ApplicationController
       :year,
       :author
     )
+  end
+
+  def book
+    @book ||= books.find_by(id: params[:id]) || Book.new
+  end
+
+  def books
+    @books ||= current_user.books
   end
 end
