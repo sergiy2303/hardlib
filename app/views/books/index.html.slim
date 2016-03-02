@@ -14,4 +14,4 @@ table.table
         td
           = image_tag book.thumbnail_url(:thumbnail), width: '50px'
         td= link_to "Download Resume", book.attachment_url
-        td= button_to "Delete", book, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{book.title} ?"
+        td= button_to "Delete", book, method: :delete, class: "btn btn-danger", remote: true, data: { disable: true }

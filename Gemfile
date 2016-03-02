@@ -19,6 +19,7 @@ gem 'net-ssh'
 gem 'cloudinary'
 gem "jquery-turbolinks"
 gem 'simple_form'
+gem 'remotipart', '~> 1.2'
 
 group :development, :test do
   gem 'pry'

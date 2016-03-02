@@ -5,4 +5,5 @@ class Book < ActiveRecord::Base
   validates :title, presence: true, length: { minimum: 2 }
   validates :pages, :year, numericality: true, presence: true
   validates :year, length: { is: 4 }
+  validates :attachment, presence: { message: 'Please choose your book' }
 end

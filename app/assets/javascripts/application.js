@@ -17,9 +17,5 @@
 //= require_tree .
 //= fileinput
 //= require_tree .
+//= require jquery.remotipart
 
-// $(document).ready( function () {
-//   alert('Hoooo');
-//   $('#book_attachment').fileinput();
-//   $('#book_thumbnail').fileinput();
-// });

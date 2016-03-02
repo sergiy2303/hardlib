@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token, only: [:create]
   def index
     @books = Book.all
   end
@@ -10,16 +12,14 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      redirect_to books_path, notice: "The book #{@book.title} has been uploaded."
-    else
-      render "new"
+      redirect_via_turbolinks_to books_path
     end
   end
 
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
-    redirect_to books_path, notice:  "The book #{@book.title} has been deleted."
+    redirect_via_turbolinks_to books_path
   end
 
   private
@@ -31,7 +31,8 @@ class BooksController < ApplicationController
       :thumbnail,
       :description,
       :pages,
-      :year
+      :year,
+      :author
     )
   end
 end
