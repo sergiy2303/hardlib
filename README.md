@@ -16,3 +16,4 @@ export GOOGLE_STORAGE_SECRET_ACCESS_KEY=your_google_secret
 export CLOUDINARY_API_KEY=your_cloudinary_key
 export CLOUDINARY_API_SECRET=cloudinary_secret
 ```
+* production: www.hardlib.com
