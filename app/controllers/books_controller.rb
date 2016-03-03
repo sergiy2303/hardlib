@@ -33,7 +33,8 @@ class BooksController < ApplicationController
       :description,
       :pages,
       :year,
-      :author
+      :author,
+      category_ids: []
     )
   end
 

@@ -6,4 +6,6 @@ class Book < ActiveRecord::Base
   validates :pages, :year, numericality: true, presence: true
   validates :year, length: { is: 4 }
   validates :attachment, presence: { message: 'Please choose your book' }
+  has_and_belongs_to_many :categories
+  validates :categories, presence: { message: 'Please choose at least one category'}
 end

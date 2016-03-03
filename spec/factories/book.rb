@@ -6,5 +6,6 @@ FactoryGirl.define do
     year { '2012' }
     pages { '150' }
     attachment { Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/books/default.pdf'))) }
+    category_ids { [create(:category).id] }
   end
 end
