@@ -1,3 +1,4 @@
 p Sorry, but you dont have permission.
-p Try login first:
-= link_to 'Log in', new_user_session_path, remote: true
+- unless user_signed_in?
+  p Try login first:
+  = link_to 'Log in', new_user_session_path, remote: true

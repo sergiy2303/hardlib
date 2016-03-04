@@ -20,6 +20,9 @@ gem 'cloudinary'
 gem "jquery-turbolinks"
 gem 'simple_form'
 gem 'remotipart', '~> 1.2'
+gem 'decent_exposure'
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 
 group :development, :test do
   gem 'pry'

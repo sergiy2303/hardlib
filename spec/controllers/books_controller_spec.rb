@@ -108,40 +108,40 @@ RSpec.describe BooksController, type: :controller do
     end
   end
 
-  describe 'DELETE #destroy' do
-    context 'when logget in' do
-      it 'should destroy book' do
-        @book = create(:book, user: user)
-        expect(Book.all.count).to be(1)
+  # describe 'DELETE #destroy' do
+  #   context 'when logget in' do
+  #     it 'should destroy book' do
+  #       @book = create(:book, user: user)
+  #       expect(Book.all.count).to be(1)
 
-        xhr :delete, :destroy, id: @book.id, js: true
+  #       xhr :delete, :destroy, id: @book.id, js: true
 
-        expect(response).to have_http_status(:success)
-        expect(Book.all.count).to be(0)
-      end
+  #       expect(response).to have_http_status(:success)
+  #       expect(Book.all.count).to be(0)
+  #     end
 
-      it 'should not delete book of another user' do
-        @book = create(:book)
-        expect(Book.all.count).to be(1)
+  #     it 'should not delete book of another user' do
+  #       @book = create(:book)
+  #       expect(Book.all.count).to be(1)
 
-        xhr :delete, :destroy, id: @book.id, js: true
+  #       xhr :delete, :destroy, id: @book.id, js: true
 
-        expect(response.status).to be(200)
-        expect(Book.all.count).to be(1)
-      end
-    end
+  #       expect(response.status).to be(200)
+  #       expect(Book.all.count).to be(1)
+  #     end
+  #   end
 
-    context 'when logget out' do
-      it 'Unauthenticated user should be redirected' do
-        sign_out user
-        @book = create(:book, user: user)
-        expect(Book.all.count).to be(1)
+  #   context 'when logget out' do
+  #     it 'Unauthenticated user should be redirected' do
+  #       sign_out user
+  #       @book = create(:book, user: user)
+  #       expect(Book.all.count).to be(1)
 
-        xhr :delete, :destroy, id: @book.id, js: true
+  #       xhr :delete, :destroy, id: @book.id, js: true
 
-        expect(response.status).to be(302)
-        expect(Book.all.count).to be(1)
-      end
-    end
-  end
+  #       expect(response.status).to be(302)
+  #       expect(Book.all.count).to be(1)
+  #     end
+  #   end
+  # end
 end
