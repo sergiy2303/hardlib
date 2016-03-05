@@ -5,4 +5,8 @@ FactoryGirl.define do
     first_name { 'Dave' }
     last_name { 'Doe' }
   end
+
+  factory :admin, parent: :user do
+    admin { true }
+  end
 end

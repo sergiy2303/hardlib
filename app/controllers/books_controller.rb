@@ -1,8 +1,8 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
-  skip_before_action :verify_authenticity_token, only: [:create]
-  before_action :book, only: [:new, :destroy]
-  before_action :books, only: [:index]
+  skip_before_action :verify_authenticity_token, only: :create
+  before_action :book, only: :new
+  before_action :books, only: :index
 
   def index
   end
@@ -16,11 +16,6 @@ class BooksController < ApplicationController
     if @book.save
       redirect_via_turbolinks_to books_path
     end
-  end
-
-  def destroy
-    @book.destroy
-    redirect_via_turbolinks_to books_path
   end
 
   private
