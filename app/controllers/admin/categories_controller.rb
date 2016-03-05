@@ -13,7 +13,7 @@ class Admin::CategoriesController < Admin::AdminsController
     if category.save
       redirect_via_turbolinks_to admin_categories_path
     else
-      render :create
+      render :edit
     end
   end
 

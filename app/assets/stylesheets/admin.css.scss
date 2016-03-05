@@ -1,0 +1,17 @@
+
+a.admin-link {
+  font-size: 1.3em;
+  color: #C0C0C0;
+  text-decoration: none;
+  font-weight: bold;
+  &:hover {
+    @extend .admin-link;
+  }
+  &:active {
+    @extend .admin-link;
+  }
+}
+
+h1.hello {
+  color: gray;
+}

@@ -1,3 +1,4 @@
 = simple_form_for [:admin, category], remote: true do |f|
   = f.input :title
   = f.button :button, class: 'btn-primary', data: { disable: true }
+  = link_to 'Cancel', admin_categories_path, class: 'btn btn-default hide'

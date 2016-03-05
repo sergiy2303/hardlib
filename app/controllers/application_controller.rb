@@ -13,4 +13,10 @@ class ApplicationController < ActionController::Base
     return if user_signed_in?
     redirect_to access_denied_path
   end
+
+  def admin?
+    @admin ||= current_user.admin if user_signed_in?
+  end
+
+  helper_method :admin?
 end

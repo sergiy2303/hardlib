@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'home', to: 'home#index'
     resources :books, only: [:index, :destroy]
-    resources :categories
+    resources :categories, except: [:new, :show]
   end
 end

@@ -4,6 +4,7 @@ RSpec.describe BooksController, type: :controller do
   let(:user) { create(:user) }
   let(:attachment) { Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/books/default.pdf'))) }
   let(:category) { create(:category) }
+  let(:category_2) { create(:category) }
   before do
     sign_in user
   end
@@ -66,6 +67,22 @@ RSpec.describe BooksController, type: :controller do
         expect(user_book.pages).to be(20)
         expect(user_book.year).to be(2015)
         expect(user_book.attachment_url).to include('default.pdf')
+        expect(user_book.category_ids.count).to be(1)
+      end
+
+      it 'should allow to add multiple categories' do
+        expect(Book.all.count).to be(0)
+
+        xhr :post, :create, book: { title: 'Test', pages: '20', year: '2015', attachment: attachment, category_ids: [category.id, category_2.id] }, js: true
+
+        user_book = user.books.first
+        expect(response).to have_http_status(:success)
+        expect(user.books.count).to be(1)
+        expect(user_book.title).to eq('Test')
+        expect(user_book.pages).to be(20)
+        expect(user_book.year).to be(2015)
+        expect(user_book.attachment_url).to include('default.pdf')
+        expect(user_book.category_ids.count).to be(2)
       end
 
       it 'should not create book without attachment' do
@@ -107,41 +124,4 @@ RSpec.describe BooksController, type: :controller do
       end
     end
   end
-
-  # describe 'DELETE #destroy' do
-  #   context 'when logget in' do
-  #     it 'should destroy book' do
-  #       @book = create(:book, user: user)
-  #       expect(Book.all.count).to be(1)
-
-  #       xhr :delete, :destroy, id: @book.id, js: true
-
-  #       expect(response).to have_http_status(:success)
-  #       expect(Book.all.count).to be(0)
-  #     end
-
-  #     it 'should not delete book of another user' do
-  #       @book = create(:book)
-  #       expect(Book.all.count).to be(1)
-
-  #       xhr :delete, :destroy, id: @book.id, js: true
-
-  #       expect(response.status).to be(200)
-  #       expect(Book.all.count).to be(1)
-  #     end
-  #   end
-
-  #   context 'when logget out' do
-  #     it 'Unauthenticated user should be redirected' do
-  #       sign_out user
-  #       @book = create(:book, user: user)
-  #       expect(Book.all.count).to be(1)
-
-  #       xhr :delete, :destroy, id: @book.id, js: true
-
-  #       expect(response.status).to be(302)
-  #       expect(Book.all.count).to be(1)
-  #     end
-  #   end
-  # end
 end
