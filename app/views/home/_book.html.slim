@@ -1,0 +1,7 @@
+.col-xs-3
+  .thumbnail
+    = image_tag book.thumbnail_url(:thumbnail), class: 'img-rounded book-image'
+    .caption
+      h3 = book.title.capitalize
+      p.thumbnail-description  = book.description
+      p.author = book.author

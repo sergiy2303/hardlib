@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
-  def index
-  end
+  expose(:books)
 
   def access_denied
   end

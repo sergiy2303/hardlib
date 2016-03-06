@@ -2,11 +2,11 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
 
   version :standard do
-    process :resize_to_fill => [100, 150, :north]
+    process :resize_to_fill => [300, 300, :north]
   end
 
   version :thumbnail do
-    resize_to_fit(50, 50)
+    process :resize_to_fill => [150, 200, :north]
   end
 
   def extension_white_list

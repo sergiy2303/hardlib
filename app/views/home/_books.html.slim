@@ -1,1 +1,3 @@
-p Welcome to hardbook!
+- books.each_slice(4) do |book|
+  .row
+    = render partial: 'book', collection: book
