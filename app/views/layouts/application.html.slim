@@ -1,6 +1,7 @@
 doctype html
 html
   head
+    meta content="width=device-width, initial-scale=1" name="viewport"
     title
       | Hardlib
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
@@ -10,7 +11,7 @@ html
     = render 'shared/navbar'
     .container-fluid
       .row
-        .col-xs-2
-        #content.col-xs-9
+        .col-sm-3.col-lg-2
+        #content.col-sm-9.col-lg-offset-1.col-lg-8
           = yield
     #modal-section

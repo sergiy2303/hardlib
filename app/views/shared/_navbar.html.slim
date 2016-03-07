@@ -7,14 +7,15 @@
         span.icon-bar
         span.icon-bar
       = link_to 'Welcome', root_path, class: 'navbar-brand'
-    - if user_signed_in?
-      ul.nav.navbar-nav.navbar-right
-        = navbar_link_to 'Admin', admin_home_path if admin?
-        = navbar_link_to 'My books', books_path
-        = navbar_link_to 'Sign Out', destroy_user_session_path, method: :delete, remote: true, data: { disable: true }
-      .nav.navbar-nav.navbar-right
-        p.navbar-text= "Signed by #{current_user.email}"
-    - else
-      .nav.navbar-nav.navbar-right
-        = navbar_link_to 'Sign In', new_user_session_path, remote: true
-        = navbar_link_to 'Sign Up', new_user_registration_path
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      - if user_signed_in?
+        ul.nav.navbar-nav.navbar-right
+          = navbar_link_to 'Admin', admin_home_path if admin?
+          = navbar_link_to 'My books', books_path
+          = navbar_link_to 'Sign Out', destroy_user_session_path, method: :delete, remote: true, data: { disable: true }
+        ul.nav.navbar-nav.navbar-right
+          p.navbar-text= "Signed by #{current_user.email}"
+      - else
+        ul.nav.navbar-nav.navbar-right
+          = navbar_link_to 'Sign In', new_user_session_path, remote: true
+          = navbar_link_to 'Sign Up', new_user_registration_path
