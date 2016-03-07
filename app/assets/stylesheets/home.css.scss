@@ -1,0 +1,23 @@
+
+.thumbnail {
+  height: 320px;
+  .book-image {
+    max-width: 200px;
+    max-height: 150px;
+  }
+  h4.book-title {
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+  }
+  p.thumbnail-description {
+    height: 50px;
+    word-wrap: break-word;
+  }
+  p.author {
+    font-weight: bold;
+    font-style: italic;
+    color: gray;
+  }
+}
+
+

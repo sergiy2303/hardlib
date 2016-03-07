@@ -1,10 +1,6 @@
 class Admin::AdminsController < ApplicationController
   layout 'admin'
 
-  decent_configuration do
-    strategy DecentExposure::StrongParametersStrategy
-  end
-
   private
 
   def authenticate_user!

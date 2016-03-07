@@ -8,8 +8,9 @@ html
     = csrf_meta_tags
   body
     = render 'shared/navbar'
-    .row
-      .col-xs-3
-      #content.col-xs-9
-        = yield
+    .container-fluid
+      .row
+        .col-xs-2
+        #content.col-xs-9
+          = yield
     #modal-section

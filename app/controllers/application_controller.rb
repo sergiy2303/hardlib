@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) << :first_name << :last_name
   end
 
+  decent_configuration do
+    strategy DecentExposure::StrongParametersStrategy
+  end
+
   def authenticate_user!
     return if user_signed_in?
     redirect_to access_denied_path
