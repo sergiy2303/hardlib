@@ -111,6 +111,26 @@ RSpec.describe BooksController, type: :controller do
         expect(response).to have_http_status(:success)
         expect(user.books.count).to be(0)
       end
+
+      it 'should not create book with too long title' do
+        expect(Book.all.count).to be(0)
+        title = '12' * 26
+
+        xhr :post, :create, book: { title: title, pages: '20', year: '2015', attachment: attachment, category_ids: [category.id] }, js: true
+
+        expect(response).to have_http_status(:success)
+        expect(user.books.count).to be(0)
+      end
+
+      it 'should not create book with too long description' do
+        expect(Book.all.count).to be(0)
+        description = '1234' * 251
+
+        xhr :post, :create, book: { title: 'title', pages: '20', year: '2015', description: description, attachment: attachment, category_ids: [category.id] }, js: true
+
+        expect(response).to have_http_status(:success)
+        expect(user.books.count).to be(0)
+      end
     end
 
     context 'when logget out' do

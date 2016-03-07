@@ -1,3 +1,5 @@
 - books.each_slice(4) do |book|
   .row
     = render partial: 'book', collection: book
+.text-center
+  = paginate books, theme: 'twitter-bootstrap-3'
