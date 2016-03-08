@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     strategy DecentExposure::StrongParametersStrategy
   end
 
-  def authenticate_user!
+  def authenticate_user!(params = {})
     return if user_signed_in?
     redirect_to access_denied_path
   end

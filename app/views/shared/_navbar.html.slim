@@ -11,7 +11,13 @@
       - if user_signed_in?
         ul.nav.navbar-nav.navbar-right
           = navbar_link_to 'Admin', admin_home_path if admin?
-          = navbar_link_to 'My books', books_path
+          li.dropdown
+            a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+              | Account
+              span.caret
+            ul.dropdown-menu
+              = navbar_link_to 'My books', books_path
+              = navbar_link_to 'Edit Profile', edit_user_registration_path
           = navbar_link_to 'Sign Out', destroy_user_session_path, method: :delete, remote: true, data: { disable: true }
         ul.nav.navbar-nav.navbar-right
           p.navbar-text= "Signed by #{current_user.first_name.capitalize} #{current_user.last_name.capitalize}"
