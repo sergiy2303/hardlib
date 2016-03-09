@@ -1,0 +1,21 @@
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true, html: { method: :put }) do |f|
+  = f.input :email, autofocus: true
+  = f.input :first_name
+  = f.input :last_name
+  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+    div
+      | Currently waiting confirmation for: 
+      = resource.unconfirmed_email
+  i
+    | (leave blank if you don't want to change it)
+  = f.input :password, autocomplete: "off"
+  = f.input :password_confirmation, autocomplete: "off"
+  i
+    | (we need your current password to confirm your changes)
+  = f.input :current_password, autocomplete: "off"
+  = f.button :button
+h3
+  | Cancel my account
+p
+  | Unhappy? 
+  = button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger'

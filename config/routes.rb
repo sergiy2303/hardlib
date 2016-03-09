@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :books, only: [:index, :new, :create]
-  devise_for :users, controllers: { sessions: "users/sessions" }
+  devise_for :users, controllers: { sessions: "users/sessions", registrations: 'users/registrations' }
   root 'home#index'
   get 'access_denied', to: 'home#access_denied'
   namespace :admin do
