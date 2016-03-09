@@ -12,12 +12,23 @@
   p.thumbnail-description {
     height: 50px;
     word-wrap: break-word;
+    color: #d0d0d0;
+    font-style: italic;
   }
   p.author {
     font-weight: bold;
     font-style: italic;
     color: gray;
   }
+  a.book-show-link {
+    text-decoration: none;
+    color: gray;
+    &:hover {
+    @extend .book-show-link;
+    }
+    &:active {
+      @extend .book-show-link;
+    }
+  }
 }
-
 
