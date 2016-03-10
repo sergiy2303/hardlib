@@ -1,19 +1,25 @@
-.row
-  .col-xs-6.col-xs-offset-3
-    h3= book.title
-    = image_tag book.thumbnail_url(:standard), class: 'book-image img-thumbnail'
-    .book-information-section
-      p
+.book-show-section
+  .row
+    .col-xs-12.col-md-6
+      h3= book.title
+  .row
+    .col-xs-4.col-md-3
+      = image_tag book.thumbnail_url(:standard), class: 'book-image img-thumbnail'
+    .col-xs-8.col-md-5
+      .book-information-section
+        p.author
+          b Author: 
+          = book.author
+        p.pages
+          b Pages: 
+          = book.pages
+        p.year
+          b Year: 
+          = book.year
+        p
+          = link_to 'Download', book.attachment_url, class: 'link-download'
+  .row
+    .col-xs-12.col-md-8
+      p.description
         b Description: 
         = book.description
-      p
-        b Author: 
-        = book.author
-      p
-        b Pages: 
-        = book.pages
-      p
-        b Year: 
-        = book.year
-      p
-        = link_to 'Download', book.attachment_url

@@ -32,3 +32,23 @@
   }
 }
 
+.book-show-section {
+  .description {
+    margin-top: 15px;
+  }
+
+  .link-download {
+    text-decoration: none;
+    color: gray;
+    font-weight: bold;
+    &:hover {
+    @extend .book-show-link;
+    color: #505050;
+    }
+    &:active {
+      @extend .book-show-link;
+      color: gray;
+    }
+    font-size: 1.2em;
+  }
+}

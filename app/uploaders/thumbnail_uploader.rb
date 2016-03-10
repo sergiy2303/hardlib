@@ -2,7 +2,7 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
 
   version :standard do
-    process :resize_to_fill => [250, 250, :north]
+    process :resize_to_fill => [200, 200, :north]
   end
 
   version :thumbnail do
