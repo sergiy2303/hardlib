@@ -12,12 +12,43 @@
   p.thumbnail-description {
     height: 50px;
     word-wrap: break-word;
+    color: #d0d0d0;
+    font-style: italic;
   }
   p.author {
     font-weight: bold;
     font-style: italic;
     color: gray;
   }
+  a.book-show-link {
+    text-decoration: none;
+    color: gray;
+    &:hover {
+    @extend .book-show-link;
+    }
+    &:active {
+      @extend .book-show-link;
+    }
+  }
 }
 
+.book-show-section {
+  .description {
+    margin-top: 15px;
+  }
 
+  .link-download {
+    text-decoration: none;
+    color: gray;
+    font-weight: bold;
+    &:hover {
+    @extend .book-show-link;
+    color: #505050;
+    }
+    &:active {
+      @extend .book-show-link;
+      color: gray;
+    }
+    font-size: 1.2em;
+  }
+}
