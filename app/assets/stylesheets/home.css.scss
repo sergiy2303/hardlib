@@ -52,3 +52,30 @@
     font-size: 1.2em;
   }
 }
+
+#access-denied-section {
+  h2 {
+    color: #cd1216;
+    font-weight: bold;
+  }
+  p {
+    font-size: 1.4em;
+    color: #cd1216;
+    a.login-link {
+      font-weight: bold;
+      color: red;
+      &:hover {
+      @extend .login-link;
+      color: red;
+      }
+
+      &:active {
+        @extend .login-link;
+        color: red;
+      }
+    }
+  }
+  .img-circle {
+    max-width: 230px;
+  }
+}
