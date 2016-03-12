@@ -1,0 +1,5 @@
+= form_tag '/admin/show', method: :get do
+  = label_tag :email, 'Search user'
+  = email_field_tag :email
+  = submit_tag 'Find'
+end

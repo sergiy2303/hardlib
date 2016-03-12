@@ -8,5 +8,7 @@ Rails.application.routes.draw do
     get 'home', to: 'home#index'
     resources :books, only: [:index, :destroy]
     resources :categories, except: [:new, :show]
+    resources :users, except: [:new, :show]
+    get 'show', to: 'users#show'
   end
 end
