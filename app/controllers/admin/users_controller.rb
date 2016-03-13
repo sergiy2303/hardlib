@@ -11,7 +11,7 @@ class Admin::UsersController < Admin::AdminsController
 
   def destroy
     user.destroy
-    redirect_to admin_users_path
+    redirect_via_turbolinks_to admin_users_path
   end
 
   def edit
@@ -19,7 +19,7 @@ class Admin::UsersController < Admin::AdminsController
 
   def update
      if user.save
-      redirect_to admin_show_path(email: user.email)
+      redirect_via_turbolinks_to admin_show_path(email: user.email)
     else
       render :edit
     end

@@ -4,14 +4,28 @@ a.admin-link {
   color: #C0C0C0;
   text-decoration: none;
   font-weight: bold;
-  &:hover {
-    @extend .admin-link;
-  }
-  &:active {
-    @extend .admin-link;
-  }
+  &:hover { @extend .admin-link; }
+  &:active { @extend .admin-link; }
+  &:visited { @extend .admin-link; }
+}
+
+a.link-back {
+  font-size: 1.3em;
+  color: gray;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  &:hover { @extend .link-back; }
+  &:active { @extend .link-back; color: #C0C0C0; }
+  &:visited { @extend .link-back; }
 }
 
 h1.hello {
   color: gray;
+}
+
+.find-user-section {
+  .btn-default {
+    margin-top: 20px;
+  }
 }

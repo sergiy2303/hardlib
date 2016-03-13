@@ -1,9 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Admin::CategoriesController, type: :controller do
+RSpec.describe Admin::UsersController, type: :controller do
   let(:user) { create(:user) }
   let(:admin) { create(:admin) }
-  let(:category) { create(:category) }
   before do
     sign_in admin
   end
@@ -41,26 +40,20 @@ RSpec.describe Admin::CategoriesController, type: :controller do
     end
   end
 
-  describe 'POST #create' do
+  describe 'GET #show' do
     context 'when logget in' do
-      it 'should create category' do
-        expect(Category.all.count).to be(0)
-
-        xhr :post, :create, category: { title: 'Test' }, js: true
+      it 'returns http success and render show' do
+        get :show, email: user.email
 
         expect(response).to have_http_status(:success)
-        expect(Category.all.count).to be(1)
-        expect(Category.last.title).to eq('Test')
+        expect(response).to render_template(:show)
       end
 
-      it 'should not create category without title' do
-        expect(Category.all.count).to be(0)
-
-        xhr :post, :create, category: { title: '' }, js: true
+      it 'returns http success and render show when user not found' do
+        get :show, email: 'some email'
 
         expect(response).to have_http_status(:success)
-        expect(Category.all.count).to be(0)
-        expect(response).to render_template(:create)
+        expect(response).to render_template(:show)
       end
     end
 
@@ -68,7 +61,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
       it 'Unauthenticated user should be redirected' do
         sign_out admin
 
-        post :create
+        get :show, email: user.email
 
         expect(response.status).to be(302)
         expect(response).to redirect_to(access_denied_path)
@@ -76,10 +69,10 @@ RSpec.describe Admin::CategoriesController, type: :controller do
     end
 
     context 'when not admin' do
-      it 'user should be redirected' do
+      it 'Uuser should be redirected' do
         sign_in user
 
-        post :create
+        get :show, email: user.email
 
         expect(response.status).to be(302)
         expect(response).to redirect_to(access_denied_path)
@@ -89,40 +82,42 @@ RSpec.describe Admin::CategoriesController, type: :controller do
 
   describe 'DELETE #destroy' do
     context 'when logget in' do
-      it 'should destroy category' do
-        expect(category)
-        expect(Category.all.count).to be(1)
+      it 'should destroy user' do
+        expect(user)
+        expect(User.all.count).to be(2)
 
-        xhr :delete, :destroy, id: category.id, js: true
+        xhr :delete, :destroy, id: user.id, js: true
 
         expect(response).to have_http_status(:success)
-        expect(Category.all.count).to be(0)
+        expect(User.all.count).to be(1)
+        expect(User.first.admin).to be_truthy
       end
     end
 
     context 'when logget out' do
       it 'Unauthenticated user should be redirected' do
         sign_out admin
-        expect(category)
-        expect(Category.all.count).to be(1)
+        expect(user)
+        expect(User.all.count).to be(2)
 
-        xhr :delete, :destroy, id: category.id, js: true
+        xhr :delete, :destroy, id: user.id, js: true
 
         expect(response.status).to be(302)
-        expect(Category.all.count).to be(1)
+        expect(User.all.count).to be(2)
       end
     end
 
     context 'when not admin' do
       it 'user should be redirected' do
         sign_in user
-        expect(category)
-        expect(Category.all.count).to be(1)
+        expect(user)
+        expect(User.all.count).to be(2)
 
-        xhr :delete, :destroy, id: category.id, js: true
+        xhr :delete, :destroy, id: user.id, js: true
 
         expect(response.status).to be(302)
-        expect(Category.all.count).to be(1)
+        expect(User.all.count).to be(2)
+        expect(User.all.count).to be(2)
       end
     end
   end
@@ -130,7 +125,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
   describe 'GET #edit' do
     context 'when logget in' do
       it 'returns http success and render edit' do
-        xhr :get, :edit, id: category.id, js: true
+        xhr :get, :edit, id: user.id, js: true
 
         expect(response).to have_http_status(:success)
         expect(response).to render_template(:edit)
@@ -141,7 +136,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
       it 'Unauthenticated user should be redirected' do
         sign_out admin
 
-        xhr :get, :edit, id: category.id, js: true
+        xhr :get, :edit, id: user.id, js: true
 
         expect(response.status).to be(302)
         expect(response).to redirect_to(access_denied_path)
@@ -152,7 +147,7 @@ RSpec.describe Admin::CategoriesController, type: :controller do
       it 'user should be redirected' do
         sign_in user
 
-        xhr :get, :edit, id: category.id, js: true
+        xhr :get, :edit, id: user.id, js: true
 
         expect(response.status).to be(302)
         expect(response).to redirect_to(access_denied_path)
@@ -162,24 +157,24 @@ RSpec.describe Admin::CategoriesController, type: :controller do
 
   describe 'POST #update' do
     context 'when logget in' do
-      it 'should update category' do
-        expect(category)
+      it 'should update user' do
+        expect(user)
 
-        xhr :post, :update, id: category.id, category: { title: 'Some title' }, js: true
+        xhr :post, :update, id: user.id, user: { first_name: 'Evan' }, js: true
 
-        category.reload
+        user.reload
         expect(response).to have_http_status(:success)
-        expect(category.title).to eq('Some title')
+        expect(user.first_name).to eq('Evan')
       end
 
-      it 'should not update category' do
-        title = category.title
+      it 'should not update user' do
+        name = user.first_name
 
-        xhr :post, :update, id: category.id, category: { title: '' }, js: true
+        xhr :post, :update, id: user.id, user: { first_name: '' }, js: true
 
-        category.reload
+        user.reload
         expect(response).to have_http_status(:success)
-        expect(category.title).to eq(title)
+        expect(user.first_name).to eq(name)
         expect(response).to render_template(:edit)
       end
     end
@@ -187,24 +182,24 @@ RSpec.describe Admin::CategoriesController, type: :controller do
     context 'when logget out' do
       it 'Unauthenticated user should be redirected' do
         sign_out admin
-        title = category.title
+        name = user.first_name
 
-        xhr :post, :update, id: category.id, category: { title: 'Some title' }, js: true
+        xhr :post, :update, id: user.id, user: { first_name: 'Evan' }, js: true
 
         expect(response.status).to be(302)
-        expect(category.title).to eq(title)
+        expect(user.first_name).to eq(name)
       end
     end
 
     context 'when not admin' do
       it 'user should be redirected' do
         sign_in user
-        title = category.title
+        name = user.first_name
 
-        xhr :post, :update, id: category.id, category: { title: 'Some title' }, js: true
+        xhr :post, :update, id: user.id, user: { first_name: 'Evan' }, js: true
 
         expect(response.status).to be(302)
-        expect(category.title).to eq(title)
+        expect(user.first_name).to eq(name)
       end
     end
   end
