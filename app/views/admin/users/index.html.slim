@@ -1,0 +1,8 @@
+.row.find-user-section
+  .col-md-6.col-xs-12.col-md-offset-2
+    = form_tag '/admin/show', method: :get do
+      = label_tag :email, 'Search user'
+      = email_field_tag :email, '', class: 'form-control'
+      = submit_tag 'Find', class: 'btn btn-default'
+    br
+    = link_to 'Back', admin_home_path, class: 'link-back'

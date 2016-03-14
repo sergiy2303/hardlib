@@ -1,0 +1,11 @@
+= simple_form_for(user, url: admin_user_path(user), html: { method: :put }, remote: true) do |f|
+  = f.input :email
+  = f.input :first_name
+  = f.input :last_name
+  = f.button :button
+
+= simple_form_for(user, url: admin_user_path(user), html: { method: :put }, remote: true) do |f|
+  = f.input :password
+  = f.input :password_confirmation
+
+  = f.button :button, 'Reset password'

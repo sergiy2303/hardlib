@@ -1,0 +1,5 @@
+.row
+  .col-md-6.col-xs-12.user-edit-section
+    = render 'user_form'
+
+    = link_to 'Back', admin_show_path(email: user.email)
