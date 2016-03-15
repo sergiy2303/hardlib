@@ -21,7 +21,6 @@
 }
 
 #book-modal .modal-dialog {
-  min-width: 650px;
 }
 
 .form-signin {
@@ -62,4 +61,13 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
+}
+
+#new-account-form .actions {
+  display: flex;
+  justify-content: space-between;
+}
+#edit-account-form .actions {
+  display: flex;
+  justify-content: space-between;
 }
