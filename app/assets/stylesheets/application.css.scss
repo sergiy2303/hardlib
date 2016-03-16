@@ -71,3 +71,8 @@
   display: flex;
   justify-content: space-between;
 }
+
+#form-book .book_categories {
+  max-height: 150px;
+  overflow-y: scroll;
+}

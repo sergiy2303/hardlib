@@ -1,11 +1,9 @@
 #access-denied-section
-  .row
-    .col-xs-8
-      .text-center
-        h2 Sorry, but you dont have permission.
-        - unless user_signed_in?
-          p
-            | Try 
-            = link_to 'login', new_user_session_path, remote: true, class: 'login-link'
-            |  first.
-        = image_tag 'icons/sad_icon.png', class: 'img-circle'
+  .text-center
+    h2 Sorry, but you dont have permission.
+    - unless user_signed_in?
+      p
+        | Try 
+        = link_to 'login', new_user_session_path, remote: true, class: 'login-link'
+        |  first.
+    = image_tag 'icons/sad_icon.png', class: 'img-circle'

@@ -1,24 +1,22 @@
 
 .thumbnail {
   height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   .book-image {
     max-width: 100%;
     max-height: 150px;
   }
-  h4.book-title {
-    text-overflow: ellipsis;
-    word-wrap: break-word;
-  }
   p.thumbnail-description {
-    height: 50px;
-    word-wrap: break-word;
     color: #d0d0d0;
     font-style: italic;
   }
-  p.author {
+  .author p {
     font-weight: bold;
     font-style: italic;
     color: gray;
+    margin: 9px;
   }
   a.book-show-link {
     text-decoration: none;
@@ -29,6 +27,10 @@
     &:active {
       @extend .book-show-link;
     }
+  }
+  .caption {
+    height: 115px;
+    overflow-y: hidden;
   }
 }
 

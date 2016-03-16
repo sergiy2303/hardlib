@@ -9,6 +9,7 @@ html
     = csrf_meta_tags
   body
     = render 'shared/navbar'
-    .row
-      #content.col-sm-9.col-lg-offset-1.col-lg-8
-        = yield
+    .container-fluid
+      .row
+        #content.col-sm-9.col-lg-offset-1.col-lg-8
+          = yield
