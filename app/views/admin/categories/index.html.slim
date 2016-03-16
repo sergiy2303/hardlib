@@ -1,18 +1,20 @@
-= link_to 'Back', admin_home_path, class: 'link-back'
-.new-category-form
-  = render 'form'
-table.table
-  thead
-    tr
-      th ID
-      th Title
-  tbody
-    - categories.each do |category|
-      tr
-        td= category.id
-        td= category.title
-        td
-          =link_to 'Delete', admin_category_path(category), method: :delete, class: 'btn btn-danger', data: { disable: true, confirm: "Are you sure want to delete category '#{category.title}'?" }, remote: true
-          =link_to 'Edit', edit_admin_category_path(category), class: 'btn btn-warning', remote: true
-.text-center
-  = paginate categories, theme: 'twitter-bootstrap-3'
+.row
+  .col-md-8.col-md-offset-2.col-xs-12
+    = link_to 'Back', admin_home_path, class: 'link-back'
+    .new-category-form
+      = render 'form'
+    table.table
+      thead
+        tr
+          th ID
+          th Title
+      tbody
+        - categories.each do |category|
+          tr
+            td= category.id
+            td= category.title
+            td
+              =link_to 'Delete', admin_category_path(category), method: :delete, class: 'btn btn-danger', data: { disable: true, confirm: "Are you sure want to delete category '#{category.title}'?" }, remote: true
+              =link_to 'Edit', edit_admin_category_path(category), class: 'btn btn-warning', remote: true
+    .text-center
+      = paginate categories, theme: 'twitter-bootstrap-3'

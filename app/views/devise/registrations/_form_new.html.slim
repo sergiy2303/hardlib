@@ -11,3 +11,4 @@
   = f.input :password_confirmation, autocomplete: "off"
   .actions
     = f.button :button
+    = link_to "Log in", new_session_path(resource_name), remote: true, class: 'btn btn-primary'

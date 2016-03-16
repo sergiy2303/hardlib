@@ -3,7 +3,9 @@
     = link_to home_path(book), class: 'book-show-link' do
       = image_tag book.thumbnail_url(:thumbnail), class: 'img-rounded book-image'
     .caption
-      = link_to home_path(book), class: 'book-show-link' do
-        h4.book-title = book.title.capitalize
-      p.thumbnail-description  = book.description[0..55].capitalize
-      p.author.bottom-align-text = book.author
+      .description
+        = link_to home_path(book), class: 'book-show-link' do
+          h4.book-title = book.title.capitalize
+        p.thumbnail-description  = book.description[0..55].capitalize
+    .author
+      p = book.author
