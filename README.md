@@ -1,6 +1,6 @@
 README
 
-* Ruby version 2.2.3
+* Ruby version 2.3.0
 * Rails version 4.2
 
 To run application you need:
