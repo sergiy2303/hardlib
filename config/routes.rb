@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :books, only: [:index, :new, :create]
+  resources :projects, only: [:index, :new, :create, :show] do
+    resources :chapters, on: :member
+  end
   devise_for :users, controllers: { sessions: "users/sessions", registrations: 'users/registrations' }
   resources :home, only: :show
   root 'home#index'
