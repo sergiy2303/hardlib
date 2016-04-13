@@ -1,3 +1,4 @@
+= link_to 'New chapter', new_project_chapter_path, class: 'btn btn-success'
 - chapters.each do |chapter|
-    = link_to project_chapter_path(id: chapter.id) do
+    = link_to project_chapter_parts_path(chapter_id: chapter.id) do
       h2= chapter.title

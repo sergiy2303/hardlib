@@ -6,13 +6,13 @@ class ChaptersController < ApplicationController
 
   def create
     if chapter.save
-      redirect_via_turbolinks_to chapters_path
+      redirect_via_turbolinks_to project_chapters_path
     end
   end
 
   def update
     if chapter.save
-      redirect_via_turbolinks_to chapters_path
+      redirect_via_turbolinks_to project_chapters_path
     else
       render :edit
     end
@@ -20,17 +20,13 @@ class ChaptersController < ApplicationController
 
   def destroy
     chapter.destroy
-    redirect_via_turbolinks_to chapters_path
+    redirect_via_turbolinks_to project_chapters_path
   end
 
   private
 
   def chapter_params
-    params.require(:chapter).permit(
-      :title,
-      :description,
-      :public
-    )
+    params.require(:chapter).permit(:title)
   end
 
   def find_project

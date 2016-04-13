@@ -1,0 +1,4 @@
+= simple_form_for(part, url: project_chapter_parts_path, remote: true) do |f|
+  = f.input :title, label: 'Title'
+  = f.input :body, label: 'Body'
+  = f.button :submit, class: "btn btn-primary", data: { disable: true }
