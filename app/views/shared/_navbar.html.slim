@@ -18,6 +18,7 @@
             ul.dropdown-menu
               = navbar_link_to 'My books', books_path
               = navbar_link_to 'My projects', projects_path
+              = navbar_link_to 'From share', shared_index_path
               = navbar_link_to 'Edit Profile', edit_user_registration_path
           = navbar_link_to 'Sign Out', destroy_user_session_path, method: :delete, remote: true, data: { disable: true }
         ul.nav.navbar-nav.navbar-right

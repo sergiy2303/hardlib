@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       resources :parts, on: :member
     end
   end
+
+  resources :shared
   devise_for :users, controllers: { sessions: "users/sessions", registrations: 'users/registrations' }
   resources :home, only: :show
   root 'home#index'
