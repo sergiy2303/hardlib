@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
-//= fileinput
+//= require fileinput
 //= require_tree .
 //= require jquery.remotipart
 
