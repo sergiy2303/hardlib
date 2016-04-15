@@ -1,1 +1,6 @@
-p= chapter.title
+p= @chapter.title
+
+- @chapter.parts.each do |part|
+    = link_to project_chapter_part_path(id: part.id, chapter_id: @chapter.id) do
+      h2= part.title
+    p= part.body

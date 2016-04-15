@@ -1,6 +1,7 @@
 class ChaptersController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_project
+  before_action :find_project, only: [:create, :index, :update]
+  before_action :find_chapter, only: [:show]
   expose(:chapter, attributes: :chapter_params)
   expose(:chapters) { find_project.chapters }
 
@@ -31,6 +32,10 @@ class ChaptersController < ApplicationController
   end
 
   def find_project
-    @project ||= current_user.projects.find(params[:project_id]) if params[:project_id]
+    @project ||= current_user.projects.find_by(id: params[:project_id]) || current_user.foreign_shares.projects.find_by(id: params[:project_id])
+  end
+
+  def find_chapter
+    @chapter ||= find_project.chapters.find_by(id: params[:id])
   end
 end
