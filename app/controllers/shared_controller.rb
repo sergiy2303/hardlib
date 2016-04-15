@@ -9,10 +9,10 @@ class SharedController < ChaptersController
   private
 
   def find_shared_projects
-    @shared_projects = Share.find_shared_projects(current_user)
+    @shared_projects ||= current_user.foreign_shares.projects
   end
 
   def find_shared_parts
-    @shared_parts = Share.find_shared_parts(current_user)
+    @shared_parts ||= current_user.foreign_shares.parts
   end
 end
