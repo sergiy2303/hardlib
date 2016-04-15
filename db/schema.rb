@@ -46,27 +46,31 @@ ActiveRecord::Schema.define(version: 20160329194221) do
   end
 
   create_table "chapters", force: :cascade do |t|
-    t.string   "title",      default: "", null: false
+    t.string   "title"
     t.integer  "project_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "chapters", ["project_id"], name: "index_chapters_on_project_id", using: :btree
+  add_index "chapters", ["user_id"], name: "index_chapters_on_user_id", using: :btree
 
   create_table "parts", force: :cascade do |t|
-    t.string   "title",      default: "", null: false
-    t.string   "body",       default: "", null: false
+    t.string   "title"
+    t.string   "body"
     t.integer  "chapter_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "parts", ["chapter_id"], name: "index_parts_on_chapter_id", using: :btree
+  add_index "parts", ["user_id"], name: "index_parts_on_user_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
-    t.string   "title",       default: "",    null: false
-    t.string   "description", default: ""
+    t.string   "title"
+    t.string   "description"
     t.boolean  "public",      default: false, null: false
     t.integer  "user_id"
     t.datetime "created_at",                  null: false

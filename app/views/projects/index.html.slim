@@ -3,3 +3,4 @@
   = link_to project_chapters_path(project) do
     h2= project.title
   p= project.description
+  = link_to 'Share project', new_share_path(document_id: project.id, document_type: project.class)

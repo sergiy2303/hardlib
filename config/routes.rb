@@ -6,7 +6,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :shared
+  resources :shared do
+    get 'project', to: 'shared#project', on: :member do
+      get 'chapter', to: 'chapters#show', on: :member do
+        get 'part', to: 'shared#part'
+      end
+    end
+  end
+
+  resources :shares, only: [:new, :create]
   devise_for :users, controllers: { sessions: "users/sessions", registrations: 'users/registrations' }
   resources :home, only: :show
   root 'home#index'

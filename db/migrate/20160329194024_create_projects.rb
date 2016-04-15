@@ -1,8 +1,8 @@
 class CreateProjects < ActiveRecord::Migration
   def change
     create_table :projects do |t|
-      t.string :title, null: false, default: ""
-      t.string :description, default: ""
+      t.string :title
+      t.string :description
       t.boolean :public, null: false, default: false
       t.references :user, index: true
 

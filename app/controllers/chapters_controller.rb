@@ -5,6 +5,7 @@ class ChaptersController < ApplicationController
   expose(:chapters) { find_project.chapters }
 
   def create
+    chapter.user_id = current_user.id
     if chapter.save
       redirect_via_turbolinks_to project_chapters_path
     end

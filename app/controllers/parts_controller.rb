@@ -5,6 +5,7 @@ class PartsController < ChaptersController
   expose(:parts) { find_chapter.parts }
 
   def create
+    part.user_id = current_user.id
     if part.save
       redirect_via_turbolinks_to project_chapter_parts_path
     end

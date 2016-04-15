@@ -1,9 +1,10 @@
 class CreateParts < ActiveRecord::Migration
   def change
     create_table :parts do |t|
-      t.string :title, null: false, default: ""
-      t.string :body, null: false, default: ""
+      t.string :title
+      t.string :body
       t.references :chapter, index: true
+      t.references :user, index: true
 
       t.timestamps null: false
     end

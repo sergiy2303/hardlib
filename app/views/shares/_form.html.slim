@@ -1,0 +1,7 @@
+= form_tag({ controller: :shares, action: :create }, remote: true) do
+
+  = hidden_field_tag :document_id, @document.id
+  = hidden_field_tag :document_type, @document.class
+
+  = email_field_tag :email, '', class: 'form-control'
+  = submit_tag :Share, class: 'btn btn-default'
