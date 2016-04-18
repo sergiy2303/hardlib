@@ -6,7 +6,7 @@ class Share < ActiveRecord::Base
   scope :project_shares, -> { where(document_type: Project) }
   scope :part_shares, -> { where(document_type: Part) }
   scope :projects, -> { Project.where(id: project_shares.map(&:document_id)) }
-  scope :parts, -> { Part.where(id: project_shares.map(&:document_id)) }
+  scope :parts, -> { Part.where(id: part_shares.map(&:document_id)) }
 
   validate :share_self, on: :create
   validates :document_id, :document_type, presence: { message: 'Invalid share. Please try again.' }

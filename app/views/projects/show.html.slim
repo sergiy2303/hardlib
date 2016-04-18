@@ -2,5 +2,5 @@ h2= @project.title
 p= @project.description
 
 - @project.chapters.each do |chapter|
-    = link_to project_chapter_path(chapter_id: chapter.id, project_id: @project.id) do
+    = link_to project_chapter_path(id: chapter.id, project_id: @project.id) do
       h2= chapter.title

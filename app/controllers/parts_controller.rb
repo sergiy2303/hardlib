@@ -1,6 +1,5 @@
 class PartsController < ChaptersController
   before_action :authenticate_user!
-  before_action :find_chapter
   expose(:part, attributes: :part_params)
   expose(:parts) { find_chapter.parts }
 

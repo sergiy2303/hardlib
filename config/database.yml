@@ -8,6 +8,9 @@ development:
   <<: *default
   database: hardlib_dev
 
-test:
+test: &test
   <<: *default
   database: hardlib_test
+
+cucumber:
+  <<: *test
