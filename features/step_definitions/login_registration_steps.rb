@@ -30,11 +30,11 @@ When /^I should see error message "([^\"]*)"$/ do |message|
   expect(page).to have_content(message)
 end
 
-When /^I am already logged in as user "([^\"]*)"$/ do |user|
+When /^I am already logged in as user "([^\"]*)" with "([^\"]*)" password$/ do |user, password|
   @user = User.find_by(email: "#{user.downcase}@mailinator.com")
   visit '/'
   click_link('Sign In')
-  fill_login_fields(email: @user.email)
+  fill_login_fields(email: @user.email, password: password)
   click_button('Log in')
   expect(page).to have_content("Signed by #{@user.first_name} #{@user.last_name}")
 end
@@ -49,6 +49,42 @@ When /^I am trying to login with invalid (email|password) for user "([^\"]*)"$/ 
     fill_login_fields(email: 'invalid@mailinator.com')
   end
   click_button('Log in')
+end
+
+When /^I am trying to edit user "([^\"]*)" infirmation via (valid|invalid) credentials$/ do |user, choose|
+  step %{I follow to edit profile page"}
+  expect(page).to have_content('Edit User')
+  if choose == 'valid'
+    fill_registrations_fields(first_name: 'Test')
+    fill_in('user_current_password', with: 'p@ssw0rd')
+  else
+    fill_registrations_fields(email: "#{user.downcase}@",
+                              first_name: '',
+                              last_name: '',
+                              password: 'pasdf'
+                             )
+    fill_in('user_current_password', with: 'p@ssw0rd')
+  end
+  step %{I press button "Update User"}
+  if choose == 'valid'
+    expect(page).to have_content("Signed by Test Testing")
+  else
+    expect(page).to have_content("Signed by #{user} Testing")
+  end
+end
+
+When /^I am trying to change user "([^\"]*)" with "([^\"]*)" password$/ do |user, password|
+  step %{I follow to edit profile page"}
+  expect(page).to have_content('Edit User')
+  fill_registrations_fields(password: password, password_confirmation: password)
+  fill_in('user_current_password', with: 'p@ssw0rd')
+  step %{I press button "Update User"}
+  expect(page).to have_content("Signed by #{user} Testing")
+end
+
+When /^I follow to edit profile page/ do
+  step %{I press link "Account"}
+  step %{I press link "Edit Profile"}
 end
 
 def fill_registrations_fields(email: 'dave@mailinator.com',
