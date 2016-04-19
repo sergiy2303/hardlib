@@ -1,4 +1,1 @@
-test:
-  post:
-    - bundle exec rspec
-    - bundle exec cucumber
+
