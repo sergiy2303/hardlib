@@ -1,0 +1,6 @@
+h2= project.title
+p= project.description
+
+- project.chapters.each do |chapter|
+    = link_to shared_project_chapter_path(project_id: project.id, id: chapter.id) do
+      h2= chapter.title

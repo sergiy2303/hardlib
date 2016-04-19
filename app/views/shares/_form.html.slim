@@ -1,0 +1,15 @@
+#flash-messages
+  - if @share&.errors&.present?
+    .alert.alert-danger
+      a.close data-dismiss="alert" aria-label="close"
+          | &times;
+      - @share.errors.full_messages.each do |msg|
+        = msg
+
+= form_tag({ controller: :shares, action: :create }, remote: true) do
+
+  = hidden_field_tag :document_id, @document&.id
+  = hidden_field_tag :document_type, @document&.class
+
+  = email_field_tag :email, '', class: 'form-control'
+  = submit_tag :Share, class: 'btn btn-default'

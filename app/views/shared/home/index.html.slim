@@ -1,0 +1,10 @@
+h2 Shared projects
+- projects.each do |project|
+  = link_to shared_project_path(project) do
+    h3= project.title
+  p= project.description
+
+h2 Shared parts
+- parts.each do |part|
+  h3= part.title
+  p= part.body

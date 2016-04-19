@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303204807) do
+ActiveRecord::Schema.define(version: 20160329194221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,52 @@ ActiveRecord::Schema.define(version: 20160303204807) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  create_table "chapters", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "chapters", ["project_id"], name: "index_chapters_on_project_id", using: :btree
+  add_index "chapters", ["user_id"], name: "index_chapters_on_user_id", using: :btree
+
+  create_table "parts", force: :cascade do |t|
+    t.string   "title"
+    t.string   "body"
+    t.integer  "chapter_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "parts", ["chapter_id"], name: "index_parts_on_chapter_id", using: :btree
+  add_index "parts", ["user_id"], name: "index_parts_on_user_id", using: :btree
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.boolean  "public",      default: false, null: false
+    t.integer  "user_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
+
+  create_table "shares", force: :cascade do |t|
+    t.integer  "sharee_id"
+    t.integer  "document_id"
+    t.string   "document_type"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "shares", ["document_type", "document_id"], name: "index_shares_on_document_type_and_document_id", using: :btree
+  add_index "shares", ["user_id"], name: "index_shares_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

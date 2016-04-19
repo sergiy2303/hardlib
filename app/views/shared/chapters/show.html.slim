@@ -1,0 +1,6 @@
+p= chapter.title
+
+- chapter.parts.each do |part|
+    = link_to shared_project_chapter_part_path(chapter_id: chapter.id, id: part.id) do
+      h2= part.title
+    p= part.body
