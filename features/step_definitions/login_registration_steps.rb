@@ -26,8 +26,8 @@ When /^I should see the next error messages:$/ do |table|
   end
 end
 
-When /^I should see error message "([^\"]*)"$/ do |message|
-  expect(page).to have_content(message)
+When /^I should see message "([^\"]*)" in the "([^\"]*)" section$/ do |message, section|
+  expect(page.find(".#{section}")).to have_content(message)
 end
 
 When /^I am already logged in as user "([^\"]*)" with "([^\"]*)" password$/ do |user, password|
