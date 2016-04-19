@@ -1,27 +1,23 @@
-When /^I am trying to register user "([^\"]*)"$/ do |user|
+When /^I am trying to register user "([^\"]*)" via (valid|invalid) credentials$/ do |user, choose|
   visit '/'
   click_link('Sign Up')
-  fill_in('user_email', with: "#{user.downcase}@mailinator.com")
-  fill_in('user_first_name', with: user)
-  fill_in('user_last_name', with: 'Testing')
-  fill_in('user_password', with: 'p@ssw0rd')
-  fill_in('user_password_confirmation', with: 'p@ssw0rd')
+  if choose == 'valid'
+    fill_registrations_fields
+  else
+    fill_registrations_fields(email: "#{user.downcase}@",
+                              first_name: '',
+                              last_name: '',
+                              password: 'pasdf'
+                             )
+  end
   click_button('Create User')
-  expect(page).to have_content("Signed by #{user} Testing")
-  expect(User.find_by(email: "#{user.downcase}@mailinator.com")).to_not be_nil
-end
-
-When /^I am trying to register user "([^\"]*)" via invalid credentials$/ do |user|
-  visit '/'
-  click_link('Sign Up')
-  fill_in('user_email', with: "#{user.downcase}@")
-  fill_in('user_first_name', with: '')
-  fill_in('user_last_name', with: '')
-  fill_in('user_password', with: 'p@ssw0rd2')
-  fill_in('user_password_confirmation', with: 'p@ssw0rd')
-  click_button('Create User')
-  expect(page).to_not have_content("Signed by #{user} Testing")
-  expect(User.find_by(email: "#{user.downcase}@mailinator.com")).to be_nil
+  if choose == 'valid'
+    expect(page).to have_content("Signed by #{user} Testing")
+    expect(User.find_by(email: "#{user.downcase}@mailinator.com")).to_not be_nil
+  else
+    expect(page).to_not have_content("Signed by #{user} Testing")
+    expect(User.find_by(email: "#{user.downcase}@mailinator.com")).to be_nil
+  end
 end
 
 When /^I should see the next error messages:$/ do |table|
@@ -30,13 +26,47 @@ When /^I should see the next error messages:$/ do |table|
   end
 end
 
+When /^I should see error message "([^\"]*)"$/ do |message|
+  expect(page).to have_content(message)
+end
+
 When /^I am already logged in as user "([^\"]*)"$/ do |user|
   @user = User.find_by(email: "#{user.downcase}@mailinator.com")
   visit '/'
   click_link('Sign In')
-  expect(page).to have_content('Please login')
-  fill_in('user_email', with: @user.email)
-  fill_in('user_password', with: 'p@ssw0rd')
+  fill_login_fields(email: @user.email)
   click_button('Log in')
   expect(page).to have_content("Signed by #{@user.first_name} #{@user.last_name}")
+end
+
+When /^I am trying to login with invalid (email|password) for user "([^\"]*)"$/ do |credential, user|
+  @user = User.find_by(email: "#{user.downcase}@mailinator.com")
+  visit '/'
+  click_link('Sign In')
+  if credential == 'password'
+    fill_login_fields(password: '1234')
+  else
+    fill_login_fields(email: 'invalid@mailinator.com')
+  end
+  click_button('Log in')
+end
+
+def fill_registrations_fields(email: 'dave@mailinator.com',
+                              first_name: 'Dave',
+                              last_name: 'Testing',
+                              password: 'p@ssw0rd',
+                              password_confirmation: 'p@ssw0rd'
+                              )
+  fill_in('user_email', with: email)
+  fill_in('user_first_name', with: first_name)
+  fill_in('user_last_name', with: last_name)
+  fill_in('user_password', with: password)
+  fill_in('user_password_confirmation', with: password_confirmation)
+end
+
+def fill_login_fields(email: 'dave@mailinator.com', password: 'p@ssw0rd')
+  expect(page).to have_content('Please login')
+  sleep 0.5 #need a good decigion for stable tests with animation
+  fill_in('user_email', with: email)
+  fill_in('user_password', with: password)
 end
