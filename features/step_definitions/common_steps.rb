@@ -13,3 +13,21 @@ When /^I press (link|button) with class "([^\"]*)"$/ do |element, name|
     first("a.#{name}").click
   end
 end
+
+And /^I should be in (root) page$/ do |page|
+  expect(current_path).to eq(root_path)
+end
+
+When /^I logout$/ do
+  #TODO fix that in phantomJS
+  sleep 1
+  step %{I press link "Sign Out"}
+  sleep 1
+end
+
+When /^I make screenshot "([^\"]*)"/ do |title|
+  time_now = Time.now.strftime('%Y-%m-%d_%H-%M-%S_%L')
+  title = "_#{title}" if title.present?
+  name = "features/screen_shots/#{time_now}#{title.underscore}.png"
+  page.driver.render(name, :full => true)
+end
