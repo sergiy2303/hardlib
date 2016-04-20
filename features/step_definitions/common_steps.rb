@@ -19,15 +19,16 @@ When /^I press (link|button) with class "([^\"]*)"$/ do |element, name|
   end
 end
 
-And /^I should be in (root) page$/ do |page|
-  expect(current_path).to eq(root_path)
+And /^I should be in (root|projects) page$/ do |page|
+  sleep 0.5 #TODO need better way for delay path expectation
+  expect(current_path).to eq(send("#{page}_path"))
 end
 
 When /^I logout$/ do
   #TODO fix that in phantomJS
-  sleep 1
+  sleep 0.5
   step %{I press link "Sign Out"}
-  sleep 1
+  sleep 0.5
 end
 
 When /^I make screenshot "([^\"]*)"/ do |title|

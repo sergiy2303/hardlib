@@ -1,7 +1,8 @@
 .my-projects
   = link_to 'New project', new_project_path, class: 'btn btn-success'
   - projects.each do |project|
-    = link_to project_chapters_path(project) do
-      h2= project.title
-    p= project.description
-    = link_to 'Share project', new_share_path(document_id: project.id, document_type: project.class)
+    .project
+      = link_to project_chapters_path(project) do
+        h2= project.title
+      p= project.description
+      = link_to 'Share project', new_share_path(document_id: project.id, document_type: project.class)
