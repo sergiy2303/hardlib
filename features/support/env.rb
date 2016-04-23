@@ -5,6 +5,10 @@ ActionController::Base.allow_rescue = false
 #if you wand to use selenium webdriver set enviroment variable like here: DRIVER=selenium rake cucumber
 Capybara.javascript_driver = ENV['DRIVER'] == "selenium" ? :selenium : :poltergeist
 
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
 Before('@javascript') do
   Capybara.current_session.driver.browser.manage.window.resize_to(1366, 768) if Capybara.javascript_driver == :selenium
 end
