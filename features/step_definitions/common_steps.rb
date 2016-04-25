@@ -8,7 +8,11 @@ end
 
 When /^I press (link|button) "([^\"]*)" with element$/ do |action, name|
   # find better fix for clicking links that contains another elements by poltergeist
-  action == 'button' ? first("button", text: name).trigger('click') : first("a", text: name).trigger('click')
+  if ENV['DRIVER'] == "selenium"
+    step %{I press #{action} "#{name}"}
+  else
+    action == 'button' ? first("button", text: name).trigger('click') : first("a", text: name).trigger('click')
+  end
 end
 
 When /^I press (link|button) with class "([^\"]*)"$/ do |element, name|
