@@ -23,6 +23,7 @@ gem 'remotipart', '~> 1.2'
 gem 'decent_exposure'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
+gem 'tinymce-rails'
 
 group :development, :test do
   gem 'pry'

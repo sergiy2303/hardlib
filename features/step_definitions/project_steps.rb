@@ -2,7 +2,12 @@ When /^I am trying to create (project|chapter|part):$/ do |item, table|
   click_link("New #{item}")
   table.hashes.each do |row|
     row.each do |key, value|
-      fill_in(key, with: value)
+      if key == "Body"
+        body = find('textarea#part_body')
+        body.set(value)
+      else
+        fill_in(key, with: value)
+      end
     end
   end
   click_button("Create #{item.capitalize}")

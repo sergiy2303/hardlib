@@ -18,4 +18,4 @@
 //= require fileinput
 //= require_tree .
 //= require jquery.remotipart
-
+//= require tinymce
