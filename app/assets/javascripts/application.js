@@ -18,4 +18,13 @@
 //= require fileinput
 //= require_tree .
 //= require jquery.remotipart
-//= require tinymce
+//= require tinymce/preinit.js
+//= require tinymce/tinymce.js
+
+$(document).on('page:change',function(){
+  tinyMCE.remove();
+  tinyMCE.init({
+    plugins: 'image code media',
+    selector: '.tinymce'
+  });
+});

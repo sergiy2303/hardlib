@@ -3,6 +3,9 @@ class PartsController < ChaptersController
   expose(:part, attributes: :part_params)
   expose(:parts) { find_chapter.parts }
 
+  def edit
+  end
+
   def create
     part.user_id = current_user.id
     if part.save

@@ -1,7 +1,4 @@
-
-= simple_form_for(part, url: project_chapter_parts_path, remote: true) do |f|
+= simple_form_for(part, url: url, remote: true) do |f|
   = f.input :title, label: 'Title'
   = f.text_area :body, label: 'Body', class: 'tinymce', rows: 40, cols: 120
   = f.button :submit, class: 'btn btn-primary', data: { disable: true }
-
-= tinymce unless Rails.env.test?
