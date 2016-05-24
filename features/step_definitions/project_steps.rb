@@ -3,8 +3,7 @@ When /^I am trying to create (project|chapter|part):$/ do |item, table|
   table.hashes.each do |row|
     row.each do |key, value|
       if key == "Body"
-        body = find('textarea#part_body')
-        body.set(value)
+        tinymce_fill_in('part_body', with: value)
       else
         fill_in(key, with: value)
       end
@@ -35,4 +34,14 @@ end
 
 def find_or_create_project(type, value)
   Object.const_get(type).find_by(title: value) || FactoryGirl.create(type.downcase.to_sym, user: @user, title: value)
+end
+
+def tinymce_fill_in (name, options = {})
+  if ENV['DRIVER'].present?
+    page.driver.browser.switch_to.frame("#{name}_ifr")
+    page.find(:css, '#tinymce').native.send_keys(options[:with])
+    page.driver.browser.switch_to.default_content
+  else
+    page.execute_script("tinyMCE.get('#{name}').setContent('#{options[:with]}')")
+  end
 end
