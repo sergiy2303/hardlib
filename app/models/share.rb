@@ -13,6 +13,8 @@ class Share < ActiveRecord::Base
   validates :sharee_id, presence: { message: 'This user does not exist.' },
                         uniqueness: { scope: [:document_id, :document_type], message: 'You have already shared this item.' }
 
+  alias_attribute :type, :document_type
+
   private
 
   def share_self

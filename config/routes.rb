@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :books, only: [:index, :new, :create]
-  resources :projects, only: [:index, :new, :create, :show] do
-    resources :chapters, only: [:index, :new, :create, :show], on: :member do
-      resources :parts, only: [:index, :new, :create, :show, :edit, :update]
+  resources :projects, only: [:index, :new, :create, :show, :destroy] do
+    resources :chapters, only: [:index, :new, :create, :show, :destroy], on: :member do
+      resources :parts, only: [:index, :new, :create, :show, :edit, :update, :destroy]
     end
   end
 

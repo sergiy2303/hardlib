@@ -1,5 +1,8 @@
 .project-chapters
+  = link_to 'Back', projects_path, class: 'btn btn-default'
   = link_to 'New chapter', new_project_chapter_path, class: 'btn btn-success'
   - chapters.each do |chapter|
+    .chapter
       = link_to project_chapter_parts_path(chapter_id: chapter.id) do
         h2= chapter.title
+      = link_to 'Delete chapter', project_chapter_path(id: chapter.id), method: :delete, remote: true, data: { confirm: 'Are you sure want to delete this chapter?' }

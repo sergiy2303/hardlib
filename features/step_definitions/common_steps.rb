@@ -47,3 +47,8 @@ And /^I should see in the "([^\"]*)" section:$/ do |section, table|
     expect(page.find(".#{section}")).to have_content(row['content'])
   end
 end
+
+And /^I am opening "([^\"]*)"$/ do |path|
+  links = path.split('>')
+  links.each { |link| step %{I press link "#{link}" with element} }
+end
