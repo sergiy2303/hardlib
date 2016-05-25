@@ -1,7 +1,11 @@
 .chapter-parts
+  = link_to 'Back', project_chapters_path, class: 'btn btn-default'
   = link_to 'New part', new_project_chapter_part_path, class: 'btn btn-success'
   - parts.each do |part|
+    .part
       = link_to project_chapter_part_path(id: part.id) do
         h2= part.title
       p= part.body
       = link_to 'Share part', new_share_path(document_id: part.id, document_type: part.class)
+      = link_to 'Edit part', edit_project_chapter_part_path(id: part.id)
+      = link_to 'Delete part', project_chapter_part_path(id: part.id), method: :delete, remote: true, data: { confirm: 'Are you sure want to delete this part?'}

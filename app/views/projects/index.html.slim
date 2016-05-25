@@ -6,3 +6,4 @@
         h2= project.title
       p= project.description
       = link_to 'Share project', new_share_path(document_id: project.id, document_type: project.class)
+      = link_to 'Delete project', project_path(id: project.id), remote: true, method: :delete, data: { confirm: 'Are you sure want to delete this project?' }
