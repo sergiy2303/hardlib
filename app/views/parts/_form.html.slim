@@ -1,4 +1,5 @@
 = simple_form_for(part, url: url, remote: true) do |f|
+  .text-right
+    = f.button :submit, class: 'btn btn-primary', data: { disable: true }
   = f.input :title, label: 'Title'
-  = f.text_area :body, label: 'Body', class: 'tinymce', rows: 40, cols: 120
-  = f.button :submit, class: 'btn btn-primary', data: { disable: true }
+  = f.text_area :body, label: 'Body', class: 'tinymce', rows: 30, cols: 120
