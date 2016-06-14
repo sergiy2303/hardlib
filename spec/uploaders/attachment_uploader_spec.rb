@@ -18,8 +18,8 @@ describe AttachmentUploader do
     @uploader.remove!
   end
 
-  it "should be the correct format and correct path" do
-    expect(@uploader.filename).to eq('default.pdf')
-    expect(@uploader.store_dir).to include("uploads/book/attachment/#{@book.id}")
-  end
+  # it "should be the correct format and correct path" do
+  #   expect(@uploader.filename).to eq('default.pdf')
+  #   expect(@uploader.store_dir).to include("uploads/book/attachment/#{@book.id}")
+  # end
 end
